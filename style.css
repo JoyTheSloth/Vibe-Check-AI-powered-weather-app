@@ -1,0 +1,469 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --text-primary: #fff;
+    --text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --card-radius: 20px;
+    --font-main: 'Outfit', sans-serif;
+    --font-display: 'Space Grotesk', sans-serif;
+}
+
+body.dark-mode {
+    --bg-gradient: linear-gradient(135deg, #09203f 0%, #537895 100%);
+    --glass-bg: rgba(0, 0, 0, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--bg-gradient);
+    background-size: 300% 300%;
+    animation: gradientBG 20s ease infinite;
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-size: 16px;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* --- GLASS UI --- */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- HEADER --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: -2px;
+}
+
+.highlight {
+    background: linear-gradient(to right, #ffefba, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.icon-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.icon-btn:hover {
+    background: white;
+    color: #333;
+    transform: rotate(15deg);
+}
+
+.glow-btn {
+    background: white;
+    color: #333;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-family: var(--font-display);
+    cursor: pointer;
+    display: flex;
+    /* Hidden text on mobile usually, but keeping full for desktop */
+    gap: 8px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    transition: 0.3s;
+}
+
+.glow-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+/* --- HERO BENTO GRID --- */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1.5fr 1fr;
+    }
+}
+
+.current-weather {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+.weather-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.timestamp {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.temp-box {
+    margin-top: 20px;
+}
+
+#current-temp {
+    font-family: var(--font-display);
+    font-size: 6rem;
+    font-weight: 800;
+    line-height: 0.9;
+    display: block;
+}
+
+.condition-badge {
+    font-size: 1.5rem;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-top: 10px;
+    display: block;
+}
+
+.weather-visual img {
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    width: 280px;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+}
+
+/* Bento Details */
+.bento-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.bento-card {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bento-card.wide {
+    grid-column: span 2;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.bento-label {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bento-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+}
+
+.sun-times {
+    display: flex;
+    gap: 20px;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* --- HOURLY SCROLL --- */
+.hourly-section h3,
+.forecast-section h3 {
+    margin-bottom: 15px;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+}
+
+.hourly-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+}
+
+.hourly-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.hourly-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 15px 10px;
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* --- 7 DAY FORECAST --- */
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+}
+
+.forecast-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    /* Pill shape */
+    padding: 25px 15px;
+    transition: 0.3s;
+}
+
+.forecast-card:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px) scale(1.02);
+}
+
+.forecast-icon {
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+/* --- MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 400px;
+    background: #fff;
+    /* Opaque for readability */
+    color: #333;
+    padding: 40px;
+    position: relative;
+    text-align: center;
+    border-radius: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-input-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-input-wrapper input {
+    background: #f0f0f0;
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    flex: 1;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+#search-confirm-btn {
+    background: #000;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* --- CHATBOT --- */
+.chatbot-wrapper {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+}
+
+.chat-bubble {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+}
+
+.chat-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 320px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    color: #fff;
+    padding: 0;
+    overflow: hidden;
+    transform-origin: bottom right;
+}
+
+.chat-header {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.msg {
+    padding: 10px 14px;
+    border-radius: 18px;
+    max-width: 85%;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.msg.bot {
+    background: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.msg.user {
+    background: #fff;
+    color: #000;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 10px;
+    gap: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-input-area input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    color: white;
+}
+
+/* ANTI GRAVITY */
+.parallax-layer {
+    transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
+}
+
+body.anti-gravity .particle {
+    opacity: 0.8;
+}

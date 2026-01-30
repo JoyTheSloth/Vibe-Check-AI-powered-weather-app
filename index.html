@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBE CAST | Gen-Z Weather</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Search Modal Overlay -->
+    <div id="search-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <button id="close-modal" class="xs-btn">✖</button>
+            <h2>Where to?</h2>
+            <div class="modal-input-wrapper">
+                <input type="text" id="city-input" placeholder="Type a city...">
+                <button id="search-confirm-btn">GO ➜</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <header class="glass-header">
+            <div class="logo">
+                <h1>VIBE<span class="highlight">CAST</span></h1>
+            </div>
+
+            <div class="header-actions">
+                <button id="search-trigger" class="icon-btn" title="Search City">🔍</button>
+                <button id="geo-btn" class="icon-btn" title="My Location">📍</button>
+                <button id="theme-toggle" class="icon-btn" title="Change Theme">🎨</button>
+                <button id="gravity-toggle" class="glow-btn">
+                    <span>ANTI-GRAVITY</span>
+                    <span>🚀</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero: Current Weather + Bento Details -->
+            <div class="hero-grid">
+                <!-- Big Weather Card -->
+                <section class="current-weather glass-panel parallax-layer" data-speed="2">
+                    <div class="weather-header">
+                        <h2 id="city-name" class="loading-text">Locating...</h2>
+                        <p id="date-time" class="timestamp">--:--</p>
+                    </div>
+
+                    <div class="weather-main">
+                        <div class="temp-box">
+                            <span id="current-temp" class="glitch-text">--°</span>
+                            <span id="weather-desc" class="condition-badge">Loading...</span>
+                        </div>
+                        <div class="weather-visual">
+                            <img id="weather-icon" src="" alt="Icon" class="floating-icon">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Bento Grid for Details -->
+                <div class="bento-details">
+                    <div class="bento-card glass-panel parallax-layer" data-speed="1.5">
+                        <span class="bento-label">💧 Humidity</span>
+                        <span id="humidity" class="bento-value">--%</span>
+                    </div>
+                    <div class="bento-card glass-panel parallax-layer" data-speed="1.5">
+                        <span class="bento-label">💨 Wind</span>
+                        <span id="wind-speed" class="bento-value">-- km/h</span>
+                    </div>
+                    <div class="bento-card glass-panel parallax-layer" data-speed="1.5">
+                        <span class="bento-label">☀️ UV Index</span>
+                        <span id="uv-index" class="bento-value">--</span>
+                    </div>
+                    <div class="bento-card glass-panel parallax-layer" data-speed="1.5">
+                        <span class="bento-label">🌧️ Rain (24h)</span>
+                        <span id="rain-chance" class="bento-value">--%</span>
+                    </div>
+                    <div class="bento-card glass-panel parallax-layer wide" data-speed="1.2">
+                        <span class="bento-label">🌅 Sun Cycle</span>
+                        <div class="sun-times">
+                            <span>⬆️ <span id="sunrise">--:--</span></span>
+                            <span>⬇️ <span id="sunset">--:--</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hourly Forecast (Horizontal Marquee) -->
+            <section class="hourly-section">
+                <h3>Next 24 Hours</h3>
+                <div class="hourly-scroll" id="hourly-container">
+                    <!-- Hourly items via JS -->
+                </div>
+            </section>
+
+            <!-- 7-Day Forecast -->
+            <section class="forecast-section">
+                <h3>7-Day Vibe Check</h3>
+                <div class="forecast-grid" id="forecast-container">
+                    <!-- Forecast items via JS -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Chatbot -->
+        <div class="chatbot-wrapper">
+            <div id="chat-window" class="chat-window glass-panel hidden">
+                <div class="chat-header">
+                    <span>AI Bestie 🤖</span>
+                    <button id="close-chat" class="xs-btn">✖</button>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="msg bot">OMG hi! Ask me anything! ✨</div>
+                </div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Will it rain today?">
+                    <button id="send-chat">➤</button>
+                </div>
+
+                <div class="quick-replies">
+                    <button class="chip" onclick="askBot('outfit')">Fit check? 👗</button>
+                    <button class="chip" onclick="askBot('rain')">Rain check? ☔</button>
+                </div>
+            </div>
+            <button id="chat-toggle" class="chat-bubble">💬</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
